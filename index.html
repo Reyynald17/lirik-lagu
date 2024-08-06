@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Project yawww :3</title>
-    <link rel="icon" href="media/favicon.ico" type="image/x-icon"> <!-- Menambahkan Favicon -->
+    <link rel="icon" href="media/favicon.ico" type="image/x-icon"> 
     <style>
         @font-face {
             font-family: 'RobotoBold';
@@ -52,7 +52,7 @@
 
         .button.hidden {
             opacity: 0;
-            pointer-events: none; /* Disable click events when hidden */
+            pointer-events: none; 
         }
 
         .lyrics {
@@ -61,9 +61,9 @@
             margin-top: 30px;
             word-wrap: break-word;
             position: absolute;
-            white-space: nowrap; /* Mencegah teks pindah ke baris berikutnya */
-            border-right: .15em solid orange; /* Efek kursor mesin ketik */
-            animation: blink-caret 0.75s step-end infinite; /* Kursor berkedip */
+            white-space: nowrap; 
+            border-right: .15em solid orange; 
+            animation: blink-caret 0.75s step-end infinite; 
         }
 
         @keyframes blink-caret {
@@ -96,17 +96,17 @@
         const lyricsContainer = document.getElementById('lyrics');
 
         const lyrics = [
-            { time: 0, text: "" }, // Teks kosong pada awal
+            { time: 0, text: "" }, 
             { time: 5, text: "Katakan cinta bila kau cinta", duration: 3 },
             { time: 10.85, text: "Hati ini meminta", duration: 3 },
             { time: 14, text: "Kau lebih dari teman berbagi", duration: 3 },
             { time: 19, text: "Jadi kekasihku saja", duration: 3 },
-            { time: 23.73, text: "", duration: 3 } // Teks kosong untuk akhir animasi
+            { time: 23.73, text: "", duration: 3 } 
         ];
 
         playButton.addEventListener('click', () => {
-            playButton.style.opacity = '0'; // Mengubah opacity tombol menjadi 0
-            playButton.style.pointerEvents = 'none'; // Menonaktifkan event klik saat tombol tidak terlihat
+            playButton.style.opacity = '0'; 
+            playButton.style.pointerEvents = 'none'; 
             audio.play();
 
             lyrics.forEach((line, index) => {
@@ -114,14 +114,14 @@
                     if (line.text !== "") {
                         typeWriter(line.text, line.duration);
                     } else {
-                        lyricsContainer.style.display = 'none'; // Sembunyikan kontainer jika teks kosong
+                        lyricsContainer.style.display = 'none'; 
                     }
                 }, line.time * 1000);
             });
         });
 
         audio.addEventListener('ended', () => {
-            // Menghapus teks satu per satu saat audio berakhir
+            
             deleteText();
         });
 
@@ -143,15 +143,15 @@
 
         function deleteText() {
             let text = lyricsContainer.innerHTML;
-            let interval = 75; // Waktu antara penghapusan karakter (dalam milidetik)
+            let interval = 75; 
 
             function deleteChar() {
                 if (text.length > 0) {
-                    text = text.slice(0, -1); // Menghapus karakter terakhir
+                    text = text.slice(0, -1); 
                     lyricsContainer.innerHTML = text;
                     setTimeout(deleteChar, interval);
                 } else {
-                    lyricsContainer.style.display = 'none'; // Sembunyikan kontainer setelah selesai menghapus
+                    lyricsContainer.style.display = 'none'; 
                 }
             }
             deleteChar();
